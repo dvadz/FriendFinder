@@ -3,11 +3,15 @@ var path = require("path");
 var fs = require("fs");
 var PORT = process.env.PORT || 3000;
 
+var htmlrouter = require('./app/routing/htmlRoutes.js');
+var apirouter = require('./app/routing/apiRoutes.js');
+
 var app = express();
 
-
-var router = require('./app/routing/htmlRoutes.js');
-app.use(router);
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(apirouter);
+app.use(htmlrouter);
 
 app.listen(PORT, function(){
     console.log(`Friendfinder is running on PORT ${PORT}`);
