@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <title>FriendFinder Survey</title>
 </head>
 <body>
@@ -26,7 +27,7 @@
             <div class="my-4">
                 <h3>Question 1</h3>
                 <h5>This is the question</h4>
-                <select id="q1">
+                <select id="question1">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -37,7 +38,7 @@
             <div class="my-4">
                 <h3>Question 2</h3>
                 <h5>This is the question</h4>
-                <select id="q2">
+                <select id="question2">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -48,7 +49,7 @@
             <div class="my-4">
                 <h3>Question 3</h3>
                 <h5>This is the question</h4>
-                <select id="q3">
+                <select id="question3">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -59,7 +60,7 @@
             <div class="my-4">
                 <h3>Question 4</h3>
                 <h5>This is the question</h4>
-                <select id="q">
+                <select id="question4">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -70,7 +71,7 @@
             <div class="my-4">
                 <h3>Question 5</h3>
                 <h5>This is the question</h4>
-                <select id="q5">
+                <select id="question5">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -81,7 +82,7 @@
             <div class="my-4">
                 <h3>Question 6</h3>
                 <h5>This is the question</h4>
-                <select id="q6">
+                <select id="question6">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -92,7 +93,7 @@
             <div class="my-4">
                 <h3>Question 7</h3>
                 <h5>This is the question</h4>
-                <select id="q7">
+                <select id="question7">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -103,7 +104,7 @@
             <div class="my-4">
                 <h3>Question 8</h3>
                 <h5>This is the question</h4>
-                <select id="q8">
+                <select id="question8">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -114,7 +115,7 @@
             <div class="my-4">
                 <h3>Question 9</h3>
                 <h5>This is the question</h4>
-                <select id="q9">
+                <select id="question9">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -125,7 +126,7 @@
             <div class="my-4">
                 <h3>Question 10</h3>
                 <h5>This is the question</h5>
-                <select id="q10">
+                <select id="question10">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -134,10 +135,36 @@
                 </select>
             </div>
 
-            <button class="btn btn-primary btn-block my-4">SUBMIT</button>
+            <button id = "btn-submit" class="btn btn-primary btn-block my-4">SUBMIT</button>
 
             <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/dvadz/FriendFinder" target="_blank">GitHub Repo</a></p>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            let btnsubmit = document.getElementById("btn-submit");
+
+            btnsubmit.addEventListener("click", collectAnswers);
+            
+            function collectAnswers() {
+                var answers = [];
+
+                for(let i = 1; i < 11; i++){
+                    let answer = document.getElementById(`question${i}`).value;
+                    answers.push(answer);
+                }
+                console.log(answers);
+
+                //send the 'answers' to the server
+                axios
+                .post('/api/friends',{answers: answers})
+                .then(function(response){
+                    console.log(response);
+                });
+                //server will respond with the friend match
+            }
+        });
+        
+    </script>
 </body>
 </html>
