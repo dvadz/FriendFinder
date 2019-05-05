@@ -15,10 +15,11 @@ apirouter.get('/api/friends', function(req, res){
 });
 
 apirouter.post('/api/friends', function(req, res){
-    console.log("Adding a new friend");
-    friends.push(req.body);
+    console.log("Received survey answers");
+    console.log(friends);
+    // TODO: find out why 'friends' is the typeof function
     console.log(req.body);
-    res.send("You posted a friend");
+    res.send("Survey was submitted.");
 });
 
 
