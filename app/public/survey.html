@@ -17,16 +17,16 @@
             <h3 class="mt-4">About You</h3>
             <div class="form-group">
                 <label for="">Name(Required)</label>
-                <input type="text" class="form-control">
+                <input id = "name" type="text" class="form-control">
             </div>
             <div class="form-group">
                     <label for="">Link to a photo(Required)</label>
-                    <input type="text" class="form-control">
+                    <input id="photo" type="text" class="form-control">
             </div>
 
             <div class="my-4">
                 <h3>Question 1</h3>
-                <h5>This is the question</h4>
+                <h5>Do you like going to the movies?</h5>
                 <select id="question1">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -37,7 +37,7 @@
             </div>
             <div class="my-4">
                 <h3>Question 2</h3>
-                <h5>This is the question</h4>
+                <h5>Do you like meeting new people?</h5>
                 <select id="question2">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -48,7 +48,7 @@
             </div>
             <div class="my-4">
                 <h3>Question 3</h3>
-                <h5>This is the question</h4>
+                <h5>Do you enjoying singing?</h5>
                 <select id="question3">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -59,7 +59,7 @@
             </div>
             <div class="my-4">
                 <h3>Question 4</h3>
-                <h5>This is the question</h4>
+                <h5>Do you like celebrating special ocassions?</h4>
                 <select id="question4">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -70,7 +70,7 @@
             </div>
             <div class="my-4">
                 <h3>Question 5</h3>
-                <h5>This is the question</h4>
+                <h5>I'd rather have dessert than exercise.</h5>
                 <select id="question5">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -81,7 +81,7 @@
             </div>
             <div class="my-4">
                 <h3>Question 6</h3>
-                <h5>This is the question</h4>
+                <h5>Money makes the world go round.</h5>
                 <select id="question6">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -92,7 +92,7 @@
             </div>
             <div class="my-4">
                 <h3>Question 7</h3>
-                <h5>This is the question</h4>
+                <h5>Raptors is the best team.</h5>
                 <select id="question7">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -103,7 +103,7 @@
             </div>
             <div class="my-4">
                 <h3>Question 8</h3>
-                <h5>This is the question</h4>
+                <h5>I like Justin Beiber!</h5>
                 <select id="question8">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -114,7 +114,7 @@
             </div>
             <div class="my-4">
                 <h3>Question 9</h3>
-                <h5>This is the question</h4>
+                <h5>I love a good beef steak.</h5>
                 <select id="question9">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -125,7 +125,7 @@
             </div>
             <div class="my-4">
                 <h3>Question 10</h3>
-                <h5>This is the question</h5>
+                <h5>The earth is flat!</h5>
                 <select id="question10">
                     <option value="1">1(Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -147,21 +147,36 @@
             btnsubmit.addEventListener("click", collectAnswers);
             
             function collectAnswers() {
+                console.log("Collecting answers");
+
+                var name = "", photo = "", body = {};
                 var answers = [];
+                
+                name = document.getElementById("name").value;
+                photo = document.getElementById("photo").value;
+                
+                //check if name or photo is missing
+                if(name==="" || photo==="") return;
+                // TODO: add modal for missing info
 
                 for(let i = 1; i < 11; i++){
                     let answer = document.getElementById(`question${i}`).value;
-                    answers.push(answer);
+                    answers.push(parseInt(answer));
                 }
-                console.log(answers);
 
+                body = {
+                    name: name,
+                    photo: photo,
+                    answer: answers
+                };
+                console.log(body);
                 //send the 'answers' to the server
                 axios
-                .post('/api/friends',{answers: answers})
+                .post('/api/friends', {body: body})
                 .then(function(response){
                     console.log(response);
                 });
-                //server will respond with the friend match
+                // TODO: server will respond with the friend match
             }
         });
         
