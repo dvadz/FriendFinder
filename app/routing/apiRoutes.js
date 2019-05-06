@@ -12,13 +12,13 @@ var friends = new Friends();
 //return friends array
 apirouter.get('/api/friends', function(req, res){
     console.log("Sending friends");
-    res.send(friends);    
+    res.send(friends.getList());    
 });
 
 apirouter.post('/api/friends', function(req, res){
     console.log("Received survey answers");
-    friends.friends.push(req.body.body);
-    console.log(friends.friends);
+    friends.add(req.body.survey);
+    console.log(friends.getList());
     friends.findAMatch();
     res.send("Survey was submitted.");
 });
