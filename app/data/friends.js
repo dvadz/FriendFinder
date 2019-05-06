@@ -1,31 +1,30 @@
 // TODO: 5. You should save your application's data inside of `app/data/friends.js` as an array of objects. Each of these objects should roughly follow the format below.
 
 function Friends() {
-    // TODO: create some 
     this.list = [
         {
             "name":"Ahmed",
-            "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+            "photo":"https://randomuser.me/api/portraits/men/65.jpg",
             "scores":[5, 1, 4, 4, 5, 1, 2, 5, 4, 1]
         },
         {
             "name":"Barock",
-            "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+            "photo":"https://randomuser.me/api/portraits/men/60.jpg",
             "scores":[1, 3, 2, 3, 5, 5, 4, 5, 3, 2]
         },
         {
-            "name":"Carlos",
-            "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+            "name":"Carla",
+            "photo":"https://randomuser.me/api/portraits/women/15.jpg",
             "scores":[3, 2, 3, 5, 5, 4, 5, 3, 2, 1]
         },
         {
             "name":"Dante",
-            "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+            "photo":"https://randomuser.me/api/portraits/men/23.jpg",
             "scores":[5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
         },
         {
             "name":"Amie",
-            "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+            "photo":"https://randomuser.me/api/portraits/women/77.jpg",
             "scores":[2, 3, 5, 5, 4, 5, 3, 2, 1, 1]
         }
     ];
