@@ -19,8 +19,8 @@ apirouter.post('/api/friends', function(req, res){
     console.log("Received survey answers");
     friends.add(req.body.survey);
     console.log(friends.getList());
-    friends.findAMatch();
-    res.send("Survey was submitted.");
+    var match = friends.findAMatch();
+    res.send(match);
 });
 
 
