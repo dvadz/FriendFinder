@@ -134,9 +134,10 @@
                     <option value="5">5(Strongly Agree)</option>
                 </select>
             </div>
-
+            <div id="warning-required" class="alert alert-warning collapse" role="alert">
+                "Name" and "Link to a photo" are both required.
+            </div>
             <button id = "btn-submit" class="btn btn-primary btn-block my-4">SUBMIT</button>
-
             <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/dvadz/FriendFinder" target="_blank">GitHub Repo</a></p>
         </div>
     </div>
@@ -182,8 +183,12 @@
                 photo = document.getElementById("photo").value;
                 
                 //check if name or photo is missing
-                if(name==="" || photo==="") return;
-                // TODO: add modal for missing info
+                if(name==="" || photo==="") {
+                    $("#warning-required").show();
+                    return;
+                } else {
+                    $("#warning-required").hide();
+                }
 
                 for(let i = 1; i < 11; i++){
                     let answer = document.getElementById(`question${i}`).value;
