@@ -2,7 +2,7 @@
 
 function Friends() {
     // TODO: create some 
-    this.friends = [
+    this.list = [
         {
             "name":"Ahmed",
             "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
@@ -20,6 +20,16 @@ Friends.prototype.findAMatch = function() {
     console.log("Running proprietary algorthm to calculate the perfect match");
 
     //get the last 'friend'
+    // let reference = this.friends(this.friends.length-1);
+    // console.log(reference);
+}
+
+Friends.prototype.add = function(friend) {
+    this.list.push(friend);
+}
+
+Friends.prototype.getList = function() {
+    return this.list;
 }
 
 module.exports = Friends;
