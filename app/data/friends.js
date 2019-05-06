@@ -12,16 +12,60 @@ function Friends() {
             "name":"Barock",
             "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
             "scores":[1, 3, 2, 3, 5, 5, 4, 5, 3, 2]
+        },
+        {
+            "name":"Carlos",
+            "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+            "scores":[3, 2, 3, 5, 5, 4, 5, 3, 2, 1]
+        },
+        {
+            "name":"Dante",
+            "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+            "scores":[5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+        },
+        {
+            "name":"Amie",
+            "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+            "scores":[2, 3, 5, 5, 4, 5, 3, 2, 1, 1]
         }
     ];
 }
 
 Friends.prototype.findAMatch = function() {
-    console.log("Running proprietary algorthm to calculate the perfect match");
+    
+    var smallest_sumOfDifferences = 51;  // find sumOfDifferences small than the current
+    var most_compatible_friend = 0;     // index to a person in 'this.list'
 
+    console.log("Running proprietary algorthm to calculate the perfect match");
     //get the last 'friend'
-    // let reference = this.friends(this.friends.length-1);
-    // console.log(reference);
+    var reference = this.list[this.list.length-1];
+
+    //we want to find the 'i' that will generate the least sumOfDifferences
+    for(let i=0; i< this.list.length-1; i++) {
+        var sumOfDifferences = 0;
+        console.log(reference);
+        console.log(this.list[i]);
+        for(let x=0; x< 10; x++){
+            //get the difference of each score
+            let difference = Math.abs( reference.scores[x] - this.list[i].scores[x]);
+            //sum up the differences
+            sumOfDifferences += difference;
+            console.log(`x:${x} ref:${reference.scores[x]}  list: ${this.list[i].scores[x]}`);
+            console.log(`diff: ${difference}`);
+        }
+        console.log(`sumOfDifferences: ${sumOfDifferences}`);
+        // find a smaller value
+        if(sumOfDifferences<smallest_sumOfDifferences){
+            //save the sumOfDifferences
+            smallest_sumOfDifferences = sumOfDifferences;
+            //save the index i
+            most_compatible_friend = i;
+            console.log("found a smaller value ", smallest_sumOfDifferences);
+            console.log("most_compatible_friend: ", most_compatible_friend);
+        }
+    }
+
+    return this.list[most_compatible_friend];
 }
 
 Friends.prototype.add = function(friend) {
