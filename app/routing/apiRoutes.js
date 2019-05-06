@@ -5,8 +5,9 @@ var path = require('path');
 var express = require('express');
 var apirouter = express.Router();
 
-var friends = require('../data/friends.js');
+var Friends = require('../data/friends.js');
 
+var friends = new Friends();
 
 //return friends array
 apirouter.get('/api/friends', function(req, res){
@@ -16,9 +17,9 @@ apirouter.get('/api/friends', function(req, res){
 
 apirouter.post('/api/friends', function(req, res){
     console.log("Received survey answers");
-    console.log(friends);
-    // TODO: find out why 'friends' is the typeof function
-    console.log(req.body);
+    friends.friends.push(req.body.body);
+    console.log(friends.friends);
+    friends.findAMatch();
     res.send("Survey was submitted.");
 });
 
