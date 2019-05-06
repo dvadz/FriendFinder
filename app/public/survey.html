@@ -164,15 +164,15 @@
                     answers.push(parseInt(answer));
                 }
 
-                body = {
+                surveyAnswers = {
                     name: name,
                     photo: photo,
                     answer: answers
                 };
-                console.log(body);
+                console.log(surveyAnswers);
                 //send the 'answers' to the server
                 axios
-                .post('/api/friends', {body: body})
+                .post('/api/friends', {survey: surveyAnswers})
                 .then(function(response){
                     console.log(response);
                 });
